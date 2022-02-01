@@ -6,9 +6,10 @@ const { Schema }  = mongoose;
 const heroSchema = new Schema({
   name: String,
   origin: String,
-  inventory: Array,
+  inventory: Object,
   background: String,
-  progress: Number
+  progress: Number,
+  email: String
 });
 
 const Hero = mongoose.model('Hero', heroSchema);
