@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 const verifyUser = require('./auth.js');
 
@@ -122,39 +122,39 @@ async function handlePostHeros(req, res) {
 // DELETE Section
 
 // This handleDeleteHeros function has verifyUser feature
-async function handleDeleteHeros(req, res) {
+// async function handleDeleteHeros(req, res) {
 
-    verifyUser(req, async (err, user) => {
-      if (err) {
-        console.error(err);
-        res.send('invalid token');
-      } else {
-        let id = req.params.id;
-        try {
-          const hero = await Hero.findOne({ _id: id, email: user.email });
-          if (!hero) {
-            res.status(400).send('Unable to update hero 😰');
-          } else {
-            await Hero.findByIdAndDelete(id);
-            res.status(200).send('cant delete');
-          }
-        } catch (err) {
-          res.status(404).send(`Unable to delete ${id} 😨`);
-        }
-      }
-    });
-  }
-
-
-// async function handleDeleteHeros(req, res){
-//   let id = req.params.id;
-//   try {
-//     await Hero.findByIdAndDelete(id);
-//     res.status(204).send('Hero deleted');
-//   } catch(err){
-//     res.status(404).send(`Unable to delete ${id}`)
+//     verifyUser(req, async (err, user) => {
+//       if (err) {
+//         console.error(err);
+//         res.send('invalid token');
+//       } else {
+//         let id = req.params.id;
+//         try {
+//           const hero = await Hero.findOne({ _id: id, email: user.email });
+//           if (!hero) {
+//             res.status(400).send('Unable to update hero 😰');
+//           } else {
+//             await Hero.findByIdAndDelete(id);
+//             res.status(200).send('cant delete');
+//           }
+//         } catch (err) {
+//           res.status(404).send(`Unable to delete ${id} 😨`);
+//         }
+//       }
+//     });
 //   }
-// } 
+
+
+async function handleDeleteHeros(req, res){
+  let id = req.params.id;
+  try {
+    await Hero.findByIdAndDelete(id);
+    res.status(204).send('Hero deleted');
+  } catch(err){
+    res.status(404).send(`Unable to delete ${id}`)
+  }
+} 
 
 //Update Section
 async function handlePutHeros(req, res) {
