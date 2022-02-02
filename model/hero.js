@@ -5,7 +5,9 @@ const { Schema }  = mongoose;
 
 const heroSchema = new Schema({
   name: String,
-  origin: String,
+  race: String,
+  class: String,
+  villageName: String,
   inventory: Object,
   background: String,
   progress: Number,

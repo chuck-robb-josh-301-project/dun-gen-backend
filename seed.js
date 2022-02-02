@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+const { _promiseOrCallback } = require('mongoose');
 const mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URL);
 
@@ -34,6 +35,9 @@ async function seed() {
 
   await Hero.create({
     name: 'Robb',
+    Pronoun: 'he', 'him', 'his'
+    race: 'human',
+    class: 'fighter',
     origin: 'Mountlake Terrace',
     // inventory: {sword, helmet},
     background: 'Shire',
@@ -44,16 +48,31 @@ async function seed() {
 
   await Hero.create({
     name: 'Chuck',
+    race: 'orc',
+    class: 'rogue',
     origin: 'Pittsburgh',
     // inventory: {axe, shield},
     background: 'Forest',
     progress: 3,
-    email: 'jpiff57@gmail.com'
+    email: 'chuckalto@gmail.com'
+  })
+  console.log('Chuck saved');
+  await Hero.create({
+    name: 'bob',
+    race: 'elf',
+    class: 'jerk',
+    origin: 'jerk land',
+    // inventory: {axe, shield},
+    background: 'mountain',
+    progress: 3,
+    email: 'chuckalto@gmail.com'
   })
   console.log('Chuck saved');
 
   await Hero.create({
     name: 'Josh',
+    race: 'Dragonborn',
+    class: 'wizard',
     origin: 'Seattle',
     // inventory: {axe, shield},
     background: 'Bog',
