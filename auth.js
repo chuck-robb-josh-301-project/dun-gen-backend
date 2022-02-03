@@ -24,7 +24,6 @@ function getKey(header, callback){
 function verifyUser(req, errFirstOrUserCallbackFunction){
   try {
     const token = req.headers.authorization.split(' ')[1];
-    console.log(token);
     // from the jsonwebtoken docs:
     jwt.verify(token, getKey, {}, errFirstOrUserCallbackFunction);
   } catch(error){

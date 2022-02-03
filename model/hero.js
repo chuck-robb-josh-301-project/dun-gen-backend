@@ -11,6 +11,7 @@ const heroSchema = new Schema({
   inventory: Object,
   background: String,
   progress: Number,
+  health: Number,
   email: String
 });
 
