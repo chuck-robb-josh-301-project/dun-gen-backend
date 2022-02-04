@@ -51,7 +51,7 @@
 
 ## Domain Modeling and Database Schema Diagram
 
-![Domain Modeling and Schema Diagram](/img/dom-data-schema-two.png)
+![Domain Modeling and Schema Diagram](/img/dom-data-schema.png)
 
 ## Wireframe
 
