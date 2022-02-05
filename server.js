@@ -50,40 +50,7 @@ app.get('/user', handleGetUser);
 
 //READ Section
 
-//Get function without verifyUser
-// async function handleGetHeros(req, res) {
-//   let queryObject = {};
-
-//   if (req.query.origin) {
-//     queryObject = {
-//       origin: req.query.origin
-//     }
-
-//   }
-
-//   try {
-//     // return all results with an empty object, or enter object with location to get all cats for that location 
-//     let herosFromDb = await Hero.find(queryObject);
-//     if (herosFromDb.length > 0) {
-//       res.status(200).send(herosFromDb);
-//     } else {
-//       res.status(404).send('No heros found...☹️');
-//     }
-//   } catch(err){
-//     res.status(500).send('Server Error...😩');
-//   }
-// }
-
-
-
 async function handleGetHeros(req, res) {
-  // let queryObject = {};
-
-  // if (req.query.email) {
-  //   queryObject = {
-  //     email: req.query.email
-  //   };
-  // }
 
   verifyUser(req, async (err, user) => {
     if (err) {
@@ -119,32 +86,6 @@ async function handlePostHeros(req, res) {
   }
 }
 
-// DELETE Section
-
-// This handleDeleteHeros function has verifyUser feature
-// async function handleDeleteHeros(req, res) {
-
-//     verifyUser(req, async (err, user) => {
-//       if (err) {
-//         console.error(err);
-//         res.send('invalid token');
-//       } else {
-//         let id = req.params.id;
-//         try {
-//           const hero = await Hero.findOne({ _id: id, email: user.email });
-//           if (!hero) {
-//             res.status(400).send('Unable to update hero 😰');
-//           } else {
-//             await Hero.findByIdAndDelete(id);
-//             res.status(200).send('cant delete');
-//           }
-//         } catch (err) {
-//           res.status(404).send(`Unable to delete ${id} 😨`);
-//         }
-//       }
-//     });
-//   }
-
 
 async function handleDeleteHeros(req, res){
   let id = req.params.id;
@@ -159,7 +100,6 @@ async function handleDeleteHeros(req, res){
 //Update Section
 async function handlePutHeros(req, res) {
   let id = req.params.id;
-  // let email = req.query.email;
   try {
     const hero = await Hero.findOne({ _id: id });
     if (!hero) {
